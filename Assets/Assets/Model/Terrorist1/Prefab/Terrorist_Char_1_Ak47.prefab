@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 7710979490315636376}
   m_Layer: 0
   m_Name: Terrorist_Char_1_Ak47
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -12,8 +12,9 @@ public class EnemyAIShoot : MonoBehaviour
     [SerializeField] float damage = 6f;
     [SerializeField] float range = 100f;
     [SerializeField] float shootRange = 8f;
-    [SerializeField] float timer = 5f;
+    [SerializeField] float timer = 1f;
     [SerializeField] ParticleSystem muzzle;
+    [SerializeField] float turnSpeed = 5f;
     float bulletTime;
     float distanceToTarget = Mathf.Infinity;
     bool isShooting = false;
@@ -37,11 +38,19 @@ public class EnemyAIShoot : MonoBehaviour
         if (distanceToTarget <= shootRange)
         {
             isShooting = true;
+            FaceTarget();
         }
         else 
         {
             isShooting = false;
         }
+    }
+    
+    private void FaceTarget()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
 
     // TODO: ADD BULLET HIT EFFECT ON OBJECT HIT
@@ -58,8 +67,8 @@ public class EnemyAIShoot : MonoBehaviour
         if (Physics.Raycast(gunPoint.position, gunPoint.forward, out RaycastHit hit, range))
         {
             //ADD ENEMY SHOOT VFX
-            PlayerHealth ph = hit.transform.GetComponent<PlayerHealth>();
-            ph.TakeDamage(damage);
+            // PlayerHealth ph = hit.transform.GetComponent<PlayerHealth>();
+            // ph.TakeDamage(damage);
         }
         else
         {
