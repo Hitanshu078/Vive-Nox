@@ -24,12 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124348}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11423194
 MonoBehaviour:
@@ -100,13 +101,17 @@ MonoBehaviour:
     sidewalks: 0
     sidewalkHeight: 0.2
     sidewalkWidth: 2
+    crosswalks: 0
+    crosswalkIntervals: 0
+    crosswalksIntersections: 0
+    crosswalkPrefab: {fileID: 0}
+    crosswalkHeightOffset: 0
+    crosswalkType: 0
     roadMaterial: {fileID: 2100000, guid: f182e2714eb8a714a99ed091081ce16c, type: 2}
     roadMaterials: []
-    roadPhysicsMaterial: {fileID: 2100000, guid: f182e2714eb8a714a99ed091081ce16c,
-      type: 2}
+    roadPhysicsMaterial: {fileID: 2100000, guid: f182e2714eb8a714a99ed091081ce16c, type: 2}
     roadPhysicsMaterials: []
-    connectionMaterial: {fileID: 2100000, guid: 3c555588afad81d428ad1704d5d015a7,
-      type: 2}
+    connectionMaterial: {fileID: 2100000, guid: 3c555588afad81d428ad1704d5d015a7, type: 2}
     isSideObject: 0
     isCustomRoad: 0
     subSegments: 0
@@ -155,10 +160,24 @@ MonoBehaviour:
     fixedDistance: 0
     connectionAngle: 0
     connectionRadius: 0
+    oneWay: 0
+    cornerRadiusMainRoad: 0
+    cornerSementsMainRoad: 0
+    cornerRadiusSecondaryRoad: 0
+    cornerRadiusSecondaryCurvature: 0
+    cornerSementsSecondaryRoad: 0
+    mainRoadsOnly: 0
     isRoadShape: 0
+    controlType: 0
+    vertexColor: {r: 0, g: 0, b: 0, a: 0}
+    trafficPosts: []
+    activeTrafficPostIndex: 0
+    showTrafficPosts: 0
   crossingCornerPresets: []
   sidewalkPresets: []
   textureData: []
   presetAssets: []
   logIndex: 0
   updateInt: 2
+  resourcesFolder: Resources
+  projectid: 1359198543
