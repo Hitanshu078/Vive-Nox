@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Jacket
+  - Ground
   layers:
   - Default
   - TransparentFX
