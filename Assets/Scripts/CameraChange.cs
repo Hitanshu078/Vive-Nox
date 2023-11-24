@@ -19,6 +19,19 @@ public class CameraChange : MonoBehaviour
             }
             StartCoroutine(Camchange ());
         }    
+        if(Input.GetButtonDown("Shoot")){
+            CamMode = 1;
+            StartCoroutine(Camchange());
+            if(Input.GetButtonDown("Camera")){
+            if(CamMode == 1){
+                CamMode = 0;
+            }
+            else{
+                CamMode +=1;
+            }
+            StartCoroutine(Camchange ());
+        }    
+        }
     }
 
     IEnumerator Camchange(){
