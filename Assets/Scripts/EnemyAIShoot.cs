@@ -15,14 +15,15 @@ public class EnemyAIShoot : MonoBehaviour
     [SerializeField] float timer = 1f;
     [SerializeField] ParticleSystem muzzle;
     [SerializeField] float turnSpeed = 5f;
+    [SerializeField] GameObject hitFX;
     float bulletTime;
     float distanceToTarget = Mathf.Infinity;
     bool isShooting = false;
 
-    // Start is called before the first frame update
-    void Start()
+    void CreateHitImpact(RaycastHit hit) 
     {
-        
+        GameObject impact = Instantiate(hitFX, hit.point, Quaternion.LookRotation(hit.normal));
+        Destroy(impact, 0.5f);
     }
 
     // Update is called once per frame
@@ -66,13 +67,20 @@ public class EnemyAIShoot : MonoBehaviour
 
         if (Physics.Raycast(gunPoint.position, gunPoint.forward, out RaycastHit hit, range))
         {
-            //ADD ENEMY SHOOT VFX
-            // PlayerHealth ph = hit.transform.GetComponent<PlayerHealth>();
-            // ph.TakeDamage(damage);
+            CreateHitImpact(hit);
+            PlayerHealth ph = hit.transform.GetComponent<PlayerHealth>();
+            if (ph == null) return;
+            ph.TakeDamage(damage);
         }
         else
         {
             return;
         }
+    }
+
+    void OnDrawGizmosSelected() 
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, shootRange);
     }
 }
