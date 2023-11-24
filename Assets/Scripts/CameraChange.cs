@@ -7,7 +7,7 @@ public class CameraChange : MonoBehaviour
     public GameObject ThirdCam;
     public GameObject FirstCam;
     [SerializeField] GameObject Weapon;
-    public int CamMode;
+    int CamMode = 0;
     // Update is called once per frame
     void Update()
     {
