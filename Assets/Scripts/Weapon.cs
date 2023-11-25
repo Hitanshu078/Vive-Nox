@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] GameObject gunPoint;
+    // [SerializeField] GameObject gunPoint;
     [SerializeField] float range = 100f;
     [SerializeField] float damage = 15f;
     [SerializeField] ParticleSystem muzzle;
@@ -27,9 +27,9 @@ public class Weapon : MonoBehaviour
 
     void Shoot() 
     {
-
         muzzle.Play();
-        if (Physics.Raycast(gunPoint.transform.position, gunPoint.transform.forward, out RaycastHit hit, range)) 
+        // - transform.forward since weapon is rotated 180 deg
+        if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, range)) 
         {
             CreateHitImpact(hit);
             Debug.Log("I hit this thing: " + hit.transform.name);

@@ -7,45 +7,88 @@ public class CameraChange : MonoBehaviour
     public GameObject ThirdCam;
     public GameObject FirstCam;
     [SerializeField] GameObject Weapon;
-    int CamMode = 0;
+    int CamMode;
+
+    void Start() 
+    {
+        CamMode = 0;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Camera")){
-            if(CamMode == 1){
+        if(Input.GetButtonDown("Camera"))
+        {
+            if(CamMode == 1)
+            {
                 CamMode = 0;
             }
-            else{
-                CamMode +=1;
+            else
+            {
+                CamMode = 1;
             }
-            StartCoroutine(Camchange ());
-        }    
-        if(Input.GetButtonDown("Shoot")){
+            ChangeCam();
+        }   
+
+        if (Input.GetButtonDown("Shoot")) 
+        {
             CamMode = 1;
-            StartCoroutine(Camchange());
-            if(Input.GetButtonDown("Camera")){
-            if(CamMode == 1){
-                CamMode = 0;
-            }
-            else{
-                CamMode +=1;
-            }
-            StartCoroutine(Camchange ());
-        }    
+            ChangeCam();
         }
     }
 
-    IEnumerator Camchange(){
-        yield return new WaitForSeconds(0.01f);
-        if (CamMode == 0){
+    void ChangeCam() 
+    {
+        if (CamMode == 0) 
+        {
+            FirstCam.SetActive(false);
             ThirdCam.SetActive(true);
-            FirstCam.SetActive (false);
             Weapon.SetActive(false);
-        }
-        if (CamMode == 1){
+        } 
+        else 
+        {
             FirstCam.SetActive(true);
             ThirdCam.SetActive(false);
             Weapon.SetActive(true);
         }
     }
+
+
+    //     if(Input.GetButtonDown("Shoot"))
+    //     {
+    //         CamMode = 1;
+    //         StartCoroutine(Camchange());
+
+    //         // if(Input.GetButtonDown("Camera"))
+    //         // {
+    //         //     if(CamMode == 1)
+    //         //     {
+    //         //         CamMode = 0;
+    //         //     }
+    //         //     else
+    //         //     {
+    //         //         CamMode +=1;
+    //         //     }
+
+    //         //     StartCoroutine(Camchange ());
+    //         // }    
+    //     }
+    // }
+
+    // IEnumerator Camchange()
+    // {
+    //     yield return new WaitForSeconds(0.01f);
+    //     if (CamMode == 0)
+    //     {
+    //         ThirdCam.SetActive(true);
+    //         FirstCam.SetActive (false);
+    //         Weapon.SetActive(false);
+    //     }
+    //     if (CamMode == 1)
+    //     {
+    //         FirstCam.SetActive(true);
+    //         ThirdCam.SetActive(false);
+    //         Weapon.SetActive(true);
+    //     }
+    // }
 }
