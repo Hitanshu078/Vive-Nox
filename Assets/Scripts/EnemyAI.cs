@@ -15,6 +15,9 @@ public class EnemyAI : MonoBehaviour
 
     AudioMan am;
 
+    float attackInterval = 2.5f;
+    float chaseInterval = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,16 +65,29 @@ public class EnemyAI : MonoBehaviour
 
     private void ChaseTarget()
     {
-        // am.PlaySFX(am.zombieWalk);
         GetComponent<Animator>().SetBool("Attack", false);
         GetComponent<Animator>().SetTrigger("Run");
         navMeshAgent.SetDestination(target.position);
+
+        chaseInterval -= Time.deltaTime;
+
+        if (chaseInterval > 0) return;
+
+        chaseInterval = 5f;
+
+        am.PlaySFX(am.zombieWalk);
     }
 
     void AttackTarget()
     {
+        attackInterval -= Time.deltaTime;
+
+        if (attackInterval > 0) return;
+
+        attackInterval = 2.5f;
+
         GetComponent<Animator>().SetBool("Attack", true);
-        // am.PlaySFX(am.playerDamage);
+        am.PlaySFX(am.playerDamage);
         PlayerHealth ph = target.GetComponent<PlayerHealth>();
         ph.TakeDamage(25f);
     }
