@@ -59,11 +59,18 @@ public class EnemyAI : MonoBehaviour
 
     private void ChaseTarget()
     {
+        GetComponent<Animator>().SetBool("Attack", false);
+        GetComponent<Animator>().SetTrigger("Run");
         navMeshAgent.SetDestination(target.position);
     }
 
     private void AttackTarget()
     {
+        // TODO : ADD PUNCHING ANIMATION !!!!!!! AND CALL PLPAYER DAMAGE
+        GetComponent<Animator>().SetBool("Attack", true);
+        PlayerHealth ph = target.GetComponent<PlayerHealth>();
+        ph.TakeDamage(10f);
+
         Debug.Log(name + " has seeked and is destroying " + target.name);
     }
 
@@ -71,6 +78,5 @@ public class EnemyAI : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, chaseRange);
-        // Gizmos.DrawWireSphere(transform.position, meeleRange);
     }
 }

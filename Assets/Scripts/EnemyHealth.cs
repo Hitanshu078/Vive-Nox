@@ -14,7 +14,8 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log("ENEMY KI HEALTH KAM HOGAYI");
         if (health <= 0) 
         {
-            //END GAME? DESTROY OBJECT
+            //TODO ADD AN EFFECT WHEN ZOMBO DIES
+            Destroy(gameObject);
         }
     }
 }

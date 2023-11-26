@@ -9,14 +9,24 @@ public class Weapon : MonoBehaviour
     [SerializeField] float damage = 15f;
     [SerializeField] ParticleSystem muzzle;
     [SerializeField] GameObject hitFX;
+    [SerializeField] int ammo = 20;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Shoot")) 
+        if (ammo > 0) 
         {
-            Shoot();
+            if (Input.GetButtonDown("Shoot")) 
+            {
+                Shoot();
+                ammo--;
+            }
         }
+    }
+
+    public void CollectAmmo(int val) 
+    {
+        ammo += val;
     }
 
     void CreateHitImpact(RaycastHit hit) 

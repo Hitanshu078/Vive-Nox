@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("HEALTH KAM HOGAYI");
         if (health <= 0) 
         {
-            //END GAME? DESTROY OBJECT
+            //LOGIC TO RESPAWN HERE
         }
     }
 }
