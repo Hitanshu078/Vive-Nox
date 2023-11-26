@@ -12,6 +12,7 @@ public class CameraChange : MonoBehaviour
     void Start() 
     {
         CamMode = 0;
+        Weapon.SetActive(false);
     }
 
     // Update is called once per frame

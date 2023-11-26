@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -11,22 +12,31 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject hitFX;
     [SerializeField] int ammo = 20;
 
+    AudioMan am;
+
+    void Start()
+    {
+        am = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioMan>();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (ammo > 0) 
+        if (ammo > 0 && Input.GetButtonDown("Shoot")) 
         {
-            if (Input.GetButtonDown("Shoot")) 
-            {
-                Shoot();
-                ammo--;
-            }
+            Shoot();
+            ammo--;
+        } 
+        else if (ammo <= 0 && Input.GetButtonDown("Shoot"))
+        {
+            am.PlaySFX(am.emptyGun);
         }
     }
 
     public void CollectAmmo(int val) 
     {
         ammo += val;
+        am.PlaySFX(am.ammoPick);
     }
 
     void CreateHitImpact(RaycastHit hit) 
@@ -38,6 +48,7 @@ public class Weapon : MonoBehaviour
     void Shoot() 
     {
         muzzle.Play();
+        am.PlaySFX(am.shoot);
         // - transform.forward since weapon is rotated 180 deg
         if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, range)) 
         {

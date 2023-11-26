@@ -14,7 +14,8 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("HEALTH KAM HOGAYI");
         if (health <= 0) 
         {
-            //LOGIC TO RESPAWN HERE
+            //GAME OVER LOGIC
+            // Time.timeScale = 0;
         }
     }
 }

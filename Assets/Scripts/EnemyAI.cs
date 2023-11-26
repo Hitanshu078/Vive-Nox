@@ -13,10 +13,13 @@ public class EnemyAI : MonoBehaviour
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
 
+    AudioMan am;
+
     // Start is called before the first frame update
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        am = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioMan>();
     }
 
     // Update is called once per frame
@@ -59,20 +62,20 @@ public class EnemyAI : MonoBehaviour
 
     private void ChaseTarget()
     {
+        // am.PlaySFX(am.zombieWalk);
         GetComponent<Animator>().SetBool("Attack", false);
         GetComponent<Animator>().SetTrigger("Run");
         navMeshAgent.SetDestination(target.position);
     }
 
-    private void AttackTarget()
+    void AttackTarget()
     {
-        // TODO : ADD PUNCHING ANIMATION !!!!!!! AND CALL PLPAYER DAMAGE
         GetComponent<Animator>().SetBool("Attack", true);
+        // am.PlaySFX(am.playerDamage);
         PlayerHealth ph = target.GetComponent<PlayerHealth>();
-        ph.TakeDamage(10f);
-
-        Debug.Log(name + " has seeked and is destroying " + target.name);
+        ph.TakeDamage(25f);
     }
+
 
     void OnDrawGizmosSelected() 
     {
