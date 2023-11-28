@@ -1,0 +1,48 @@
+ADD THIS ON WEAPON SCRIPT:
+
+using TMPro;
+
+[SerializeField] TextMeshProUGUI ammoTxt;
+
+
+Update() {
+	DisplayAmmo();
+}
+
+void DisplayAmmo() 
+{
+	ammoTxt.text = ammo.ToString();
+}
+
+
+SIMILARLY ON PLAYER HEALTH
+
+SCENELOADER ON GAME MANAGER COMPONENT:
+
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class SceneLoader : MonoBehaviour
+{
+    public void ReloadGame()
+    {
+        SceneManager.LoadScene("Level 1");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Start");
+    }
+
+}
+
+
+ALSO ADD INTERACTIONS ON BUTTONS BY LINKING THEM TO RESPECTIVE FUNCTIONS
+
+- Pause (make timescale = 0)
+- resume (timescale = 1)
+- back to main menu button
+
+
